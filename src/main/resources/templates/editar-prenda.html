@@ -1,10 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Editar Prenda</title>
+    <href stylesheet="style2.css" th:remove="tag"/>
 </head>
 <body>
+
+<h2>Editar Prenda</h2>
+
+<form th:action="@{/prendas/actualizar/{id}(id=${prenda.id})}"
+      th:object="${prenda}" method="post">
+
+    <label>Nombre:</label>
+    <input th:field="*{nombre}"><br>
+
+    <label>Talla:</label>
+    <input th:field="*{talla}"><br>
+
+    <label>tipo:</label>
+    <input th:field="*{tipo}"><br>
+
+    <label>Precio:</label>
+    <input th:field="*{precio}" type="number" step="0.01"><br>
+
+    <label>Stock:</label>
+    <input th:field="*{stock}" type="number"><br>
+
+    <button type="submit">Actualizar</button>
+    <a th:href="@{/prendas}">Cancelar</a>
+</form>
 
 </body>
 </html>

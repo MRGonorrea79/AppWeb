@@ -1,10 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Lista de Prendas</title>
+    <href stylesheet="style2.css" th:remove="tag"/>
 </head>
 <body>
+
+<h2>Lista de Prendas</h2>
+
+<a th:href="@{/prendas/agregar}">Agregar Prenda</a>
+
+<table border="1">
+    <tr>
+        <th>Nombre</th>
+        <th>Talla</th>
+        <th>Tipo</th>
+        <th>Precio</th>
+        <th>Stock</th>
+        <th>Acciones</th>
+    </tr>
+
+    <tr th:each="p : ${prendas}">
+        <td th:text="${p.nombre}"></td>
+        <td th:text="${p.talla}"></td>
+        <td th:text="${p.tipo}"></td>
+        <td th:text="${p.precio}"></td>
+        <td th:text="${p.stock}"></td>
+        <td>
+            <a th:href="@{/prendas/detalle/{id}(id=${p.id})}">Ver</a> |
+            <a th:href="@{/prendas/editar/{id}(id=${p.id})}">Editar</a> |
+            <a th:href="@{/prendas/eliminar/{id}(id=${p.id})}"
+               onclick="return confirm('¿Eliminar prenda?')">Eliminar</a>
+        </td>
+    </tr>
+</table>
+
+<br>
+<a th:href="@{/inicio}">Volver</a>
 
 </body>
 </html>

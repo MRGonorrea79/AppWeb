@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Confirmación</title>
+    <href stylesheet="style2.css" th:remove="tag"/>
 </head>
 <body>
+
+<h2>Acción realizada correctamente</h2>
+
+<a th:href="@{/prendas}">Aceptar</a>
 
 </body>
 </html>

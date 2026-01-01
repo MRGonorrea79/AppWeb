@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Error</title>
+    <href stylesheet="style2.css" th:remove="tag"/>
 </head>
 <body>
+
+<h2>Error</h2>
+<p>Ocurrió un problema.</p>
+
+<a th:href="@{/inicio}">Volver</a>
 
 </body>
 </html>

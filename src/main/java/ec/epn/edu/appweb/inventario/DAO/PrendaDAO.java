@@ -1,4 +1,9 @@
-package ec.epn.edu.appweb.DAO;
+package ec.epn.edu.appweb.inventario.DAO;
 
-public class PrendaDAO {
+import ec.epn.edu.appweb.inventario.modelo.Prenda;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface PrendaDAO extends JpaRepository<Prenda, Long> {
 }

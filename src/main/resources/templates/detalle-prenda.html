@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Detalle Prenda</title>
+    <href stylesheet="style2.css" th:remove="tag"/>
 </head>
 <body>
+
+<h2>Detalle de Prenda</h2>
+
+<p><b>Nombre:</b> <span th:text="${prenda.nombre}"></span></p>
+<p><b>Talla:</b> <span th:text="${prenda.talla}"></span></p>
+<p><b>Tipo:</b> <span th:text="${prenda.tipo}"></span></p>
+<p><b>Precio:</b> <span th:text="${prenda.precio}"></span></p>
+<p><b>Stock:</b> <span th:text="${prenda.stock}"></span></p>
+
+<a th:href="@{/prendas}">Volver</a>
 
 </body>
 </html>

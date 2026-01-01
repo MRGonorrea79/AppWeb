@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Eliminar Prenda</title>
+    <href stylesheet="style2.css" th:remove="tag"/>
 </head>
 <body>
+
+<h2>Eliminar Prenda</h2>
+
+<p>¿Está seguro que desea eliminar la siguiente prenda?</p>
+
+<ul>
+    <li><b>Nombre:</b> <span th:text="${prenda.nombre}"></span></li>
+    <li><b>Talla:</b> <span th:text="${prenda.talla}"></span></li>
+    <li><b>Tipo:</b> <span th:text="${prenda.tipo}"></span></li>
+    <li><b>Precio:</b> <span th:text="${prenda.precio}"></span></li>
+    <li><b>Stock:</b> <span th:text="${prenda.stock}"></span></li>
+</ul>
+
+<form th:action="@{/prendas/eliminar/{id}(id=${prenda.id})}" method="get">
+    <button type="submit">Confirmar</button>
+    <a th:href="@{/prendas}">Cancelar</a>
+</form>
 
 </body>
 </html>

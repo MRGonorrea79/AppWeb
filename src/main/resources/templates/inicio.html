@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Inicio</title>
+    <href stylesheet="style2.css" th:remove="tag"/>
 </head>
 <body>
+
+<h1>Inventario Tienda de Ropa</h1>
+
+<a th:href="@{/prendas}">Gestionar Prendas</a>
+<br><br>
+<a th:href="@{/login}">Cerrar Sesión</a>
 
 </body>
 </html>
