@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Editar Prenda</title>
-    <href stylesheet="style2.css" th:remove="tag"/>
+    <link rel="stylesheet" th:href="@{../static/styles2.css}">
 </head>
 <body>
 
@@ -18,7 +18,7 @@
     <input th:field="*{talla}"><br>
 
     <label>tipo:</label>
-    <input th:field="*{tipo}"><br>
+    <input th:field="*{tipoPrenda.nombre}"><br>
 
     <label>Precio:</label>
     <input th:field="*{precio}" type="number" step="0.01"><br>

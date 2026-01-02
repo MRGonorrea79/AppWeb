@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Lista de Prendas</title>
-    <href stylesheet="style2.css" th:remove="tag"/>
+    <link rel="stylesheet" th:href="@{../static/styles2.css}">
 </head>
 <body>
 
@@ -23,7 +23,7 @@
     <tr th:each="p : ${prendas}">
         <td th:text="${p.nombre}"></td>
         <td th:text="${p.talla}"></td>
-        <td th:text="${p.tipo}"></td>
+        <td th:text="${p.tipoPrenda.nombre}"></td>
         <td th:text="${p.precio}"></td>
         <td th:text="${p.stock}"></td>
         <td>

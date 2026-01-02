@@ -12,7 +12,11 @@ public class Prenda {
 
     private String nombre;
     private String talla;
-    private String tipo;
+
+    @ManyToOne
+    @JoinColumn(name = "tipo_id", nullable = false)
+    private TipoPrenda tipoPrenda;
+
     private Double precio;
     private Integer stock;
 
@@ -25,8 +29,8 @@ public class Prenda {
     public String getTalla() { return talla; }
     public void setTalla(String talla) { this.talla = talla; }
 
-    public String getTipo() { return tipo; }
-    public void setTipo(String color) { this.tipo = color; }
+    public TipoPrenda getTipoPrenda() { return tipoPrenda; }
+    public void setTipoPrenda(TipoPrenda tipoPrenda) { this.tipoPrenda = tipoPrenda; }
 
     public Double getPrecio() { return precio; }
     public void setPrecio(Double precio) { this.precio = precio; }

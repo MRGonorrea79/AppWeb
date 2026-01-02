@@ -1,6 +1,7 @@
 package ec.epn.edu.appweb.controller;
 
 import ec.epn.edu.appweb.inventario.DAO.PrendaDAO;
+import ec.epn.edu.appweb.inventario.DAO.TipoPrendaDAO;
 import ec.epn.edu.appweb.inventario.modelo.Prenda;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,11 +11,17 @@ import org.springframework.web.bind.annotation.*;
 public class GestionarPrendasController {
 
     private final PrendaDAO prendaDAO;
+    private final TipoPrendaDAO tipoPrendaDAO;
 
-    public GestionarPrendasController(PrendaDAO prendaDAO) {
+    public GestionarPrendasController(PrendaDAO prendaDAO,
+                                      TipoPrendaDAO tipoPrendaDAO) {
         this.prendaDAO = prendaDAO;
+        this.tipoPrendaDAO = tipoPrendaDAO;
     }
-
+    @GetMapping("/")
+    public String index() {
+        return "login";
+    }
     @GetMapping("/login")
     public String login() {
         return "inicio";
@@ -34,6 +41,7 @@ public class GestionarPrendasController {
     @GetMapping("/prendas/agregar")
     public String agregar(Model model) {
         model.addAttribute("prenda", new Prenda());
+        model.addAttribute("tipos", tipoPrendaDAO.findAll());
         return "agregar-prenda";
     }
 
@@ -47,6 +55,8 @@ public class GestionarPrendasController {
     public String editar(@PathVariable Long id, Model model) {
         model.addAttribute("prenda",
                 prendaDAO.findById(id).orElse(null));
+        model.addAttribute("tipos",
+                tipoPrendaDAO.findAll());
         return "editar-prenda";
     }
 
@@ -60,7 +70,8 @@ public class GestionarPrendasController {
 
     @GetMapping("/prendas/eliminar/{id}")
     public String confirmarEliminar(@PathVariable Long id, Model model) {
-        model.addAttribute("prenda", prendaDAO.findById(id).orElse(null));
+        model.addAttribute("prenda",
+                prendaDAO.findById(id).orElse(null));
         return "eliminar-prenda";
     }
 
@@ -69,7 +80,6 @@ public class GestionarPrendasController {
         prendaDAO.deleteById(id);
         return "redirect:/confirmar";
     }
-
 
     @GetMapping("/prendas/detalle/{id}")
     public String detalle(@PathVariable Long id, Model model) {
@@ -83,3 +93,4 @@ public class GestionarPrendasController {
         return "confirmar-accion";
     }
 }
+

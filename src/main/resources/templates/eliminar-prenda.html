@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Eliminar Prenda</title>
-    <href stylesheet="style2.css" th:remove="tag"/>
+    <link rel="stylesheet" th:href="@{../static/styles.css}">
 </head>
 <body>
 
@@ -13,7 +13,7 @@
 <ul>
     <li><b>Nombre:</b> <span th:text="${prenda.nombre}"></span></li>
     <li><b>Talla:</b> <span th:text="${prenda.talla}"></span></li>
-    <li><b>Tipo:</b> <span th:text="${prenda.tipo}"></span></li>
+    <li><b>Tipo:</b> <span th:text="${prenda.tipoPrenda.nombre}"></span></li>
     <li><b>Precio:</b> <span th:text="${prenda.precio}"></span></li>
     <li><b>Stock:</b> <span th:text="${prenda.stock}"></span></li>
 </ul>

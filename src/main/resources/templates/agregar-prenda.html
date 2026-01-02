@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Agregar Prenda</title>
-    <href stylesheet="style2.css" th:remove="tag"/>
+    <link rel="stylesheet" th:href="@{../static/styles2.css}">
 </head>
 <body>
 
@@ -17,7 +17,7 @@
     <input th:field="*{talla}" required><br>
 
     <label>Tipo:</label>
-    <input th:field="*{tipo}" required><br>
+    <input th:field="*{tipoPrenda.nombre}" required><br>
 
     <label>Precio:</label>
     <input th:field="*{precio}" type="number" step="0.01" required><br>
