@@ -70,14 +70,20 @@ public class GestionarPrendasController {
 
     @GetMapping("/prendas/eliminar/{id}")
     public String confirmarEliminar(@PathVariable Long id, Model model) {
-        model.addAttribute("prenda",
-                prendaDAO.findById(id).orElse(null));
+        Prenda prenda = prendaDAO.findById(id).orElse(null);
+        model.addAttribute("prenda", prenda);
+
         return "eliminar-prenda";
     }
 
     @GetMapping("/prendas/eliminar/confirmar/{id}")
     public String eliminarPrenda(@PathVariable Long id) {
-        prendaDAO.deleteById(id);
+
+        Prenda prenda = prendaDAO.findById(id).orElse(null);
+        if (prenda != null) {
+            prendaDAO.eliminarPrenda(prenda);
+        }
+
         return "redirect:/confirmar";
     }
 

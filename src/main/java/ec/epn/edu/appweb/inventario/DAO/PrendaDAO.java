@@ -6,4 +6,10 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PrendaDAO extends JpaRepository<Prenda, Long> {
+
+    default void eliminarPrenda(Prenda prenda) {
+        delete(prenda);
+    }
+
+
 }

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Eliminar Prenda</title>
-    <link rel="stylesheet" th:href="@{../static/styles.css}">
+    <link rel="stylesheet" th:href="@{/styles.css}">
 </head>
 <body>
 
@@ -18,7 +18,8 @@
     <li><b>Stock:</b> <span th:text="${prenda.stock}"></span></li>
 </ul>
 
-<form th:action="@{/prendas/eliminar/{id}(id=${prenda.id})}" method="get">
+<form th:action="@{/prendas/eliminar/confirmar/{id}(id=${prenda.id})}"
+      method="get">
     <button type="submit">Confirmar</button>
     <a th:href="@{/prendas}">Cancelar</a>
 </form>
