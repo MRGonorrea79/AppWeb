@@ -6,23 +6,44 @@
 </head>
 <body>
 
-<h2>Eliminar Prenda</h2>
+<section class="dashboard-content">
 
-<p>¿Está seguro que desea eliminar la siguiente prenda?</p>
+    <section class="contenedor-crud">
 
-<ul>
-    <li><b>Nombre:</b> <span th:text="${prenda.nombre}"></span></li>
-    <li><b>Talla:</b> <span th:text="${prenda.talla}"></span></li>
-    <li><b>Tipo:</b> <span th:text="${prenda.tipoPrenda.nombre}"></span></li>
-    <li><b>Precio:</b> <span th:text="${prenda.precio}"></span></li>
-    <li><b>Stock:</b> <span th:text="${prenda.stock}"></span></li>
-</ul>
+        <h2 class="subtitulo-gestion">Eliminar Prenda</h2>
 
-<form th:action="@{/prendas/eliminar/confirmar/{id}(id=${prenda.id})}"
-      method="get">
-    <button type="submit">Confirmar</button>
-    <a th:href="@{/prendas}">Cancelar</a>
-</form>
+        <section class="form-container">
+
+            <p>¿Está seguro que desea eliminar la siguiente prenda?</p>
+
+            <ul>
+                <li><b>Nombre:</b> <span th:text="${prenda.nombre}"></span></li>
+                <li><b>Talla:</b> <span th:text="${prenda.talla}"></span></li>
+                <li><b>Tipo:</b> <span th:text="${prenda.tipoPrenda.nombre}"></span></li>
+                <li><b>Precio:</b> <span th:text="${prenda.precio}"></span></li>
+                <li><b>Stock:</b> <span th:text="${prenda.stock}"></span></li>
+            </ul>
+
+            <form th:action="@{/prendas/eliminar/confirmar/{id}(id=${prenda.id})}"
+                  method="get">
+
+                <div class="form-buttons">
+                    <button type="submit" class="btn-gestion btn-eliminar">
+                        Confirmar
+                    </button>
+
+                    <a th:href="@{/prendas}" class="btn-gestion btn-cancelar">
+                        Cancelar
+                    </a>
+                </div>
+
+            </form>
+
+        </section>
+
+    </section>
+
+</section>
 
 </body>
 </html>

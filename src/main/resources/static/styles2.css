@@ -193,6 +193,41 @@ header ol li a{
         object-fit: contain;
 }
 
+.btn-confirmar{
+    background-color: #dc3545;
+    color: var(--Blanco);
+    border: none;
+    border-radius: 15px;
+    padding: 12px 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background .18s ease, transform .08s ease;
+}
+
+.btn-confirmar:hover{
+    background-color: #c9302c;
+    transform: translateY(-1px);
+}
+
+
+.btn-cancelar-eliminar{
+    background-color: #6c757d;
+    color: var(--Blanco);
+    text-decoration: none;
+    border-radius: 15px;
+    padding: 12px 25px;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .18s ease, transform .08s ease;
+}
+
+.btn-cancelar-eliminar:hover{
+    background-color: #5a6268;
+    transform: translateY(-1px);
+}
+
 
 .footer{
     background: var(--Negro-primario);
@@ -202,7 +237,7 @@ header ol li a{
     margin: 0;
 }
 
-/* Estilos para CRUD */
+
 .contenedor-crud{
     width: 95%;
     max-width: 1200px;
@@ -221,7 +256,7 @@ header ol li a{
     padding-bottom: 10px;
 }
 
-/* Formulario */
+
 .form-container{
     background: var(--Fondo);
     padding: 25px;

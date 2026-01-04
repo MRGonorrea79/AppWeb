@@ -5,18 +5,20 @@
     <link rel="stylesheet" th:href="@{/styles.css}">
 </head>
 <body>
+<section class="login-section">
+    <h1>Inicio de Sesión</h1>
 
-<h2>Inicio de Sesión</h2>
+    <form th:action="@{/inicio}" method="get">
+        <label>Usuario:</label>
+        <input type="text" required>
 
-<form th:action="@{/inicio}" method="get">
-    <label>Usuario:</label>
-    <input type="text" required>
+        <label>Contraseña:</label>
+        <input type="password" required>
 
-    <label>Contraseña:</label>
-    <input type="password" required>
+        <button type="submit">Ingresar</button>
+    </form>
+</section>
 
-    <button type="submit">Ingresar</button>
-</form>
 
 </body>
 </html>
