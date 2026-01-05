@@ -6,7 +6,7 @@ import ec.epn.edu.appweb.inventario.modelo.Prenda;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
+import java.util.List;
 @Controller
 public class GestionarPrendasController {
 
@@ -24,12 +24,12 @@ public class GestionarPrendasController {
     }
     @GetMapping("/login")
     public String login() {
-        return "inicio";
+        return "dashboard";
     }
 
     @GetMapping("/inicio")
     public String inicio() {
-        return "inicio";
+        return "dashboard";
     }
 
     @GetMapping("/prendas")
@@ -98,5 +98,16 @@ public class GestionarPrendasController {
     public String confirmar() {
         return "confirmar-accion";
     }
+
+
+    @GetMapping("/hoddies")
+    public String listarHoodies(Model model) {
+        List<Prenda> hoodies = prendaDAO.findByTipoPrendaId(4L); // 4L es el id de Hoodies
+        model.addAttribute("hoodies", hoodies);
+        return "lista-prendas";
+    }
+
+
 }
+
 

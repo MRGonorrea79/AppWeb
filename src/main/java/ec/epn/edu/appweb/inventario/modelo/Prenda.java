@@ -12,6 +12,7 @@ public class Prenda {
 
     private String nombre;
     private String talla;
+    private String imagenUrl;
 
     @ManyToOne
     @JoinColumn(name = "tipo_id", nullable = false)
@@ -37,4 +38,11 @@ public class Prenda {
 
     public Integer getStock() { return stock; }
     public void setStock(Integer stock) { this.stock = stock; }
+
+    public String getImagenUrl() {
+        return imagenUrl;
+    }
+    public void setImagenUrl(String imagenUrl) {
+        this.imagenUrl = imagenUrl;
+    }
 }

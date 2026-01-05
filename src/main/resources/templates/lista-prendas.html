@@ -1,42 +1,89 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Lista de Prendas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/styles2.css}">
+    <title>Gestión Hoodies</title>
 </head>
 <body>
+<header>
+    <div class="logo">
+        <img th:src="@{/img/LogoMP.png}" alt="logoEmpresa" width="100" height="100">
+        <h1>Gestión de Hoodies</h1>
+    </div>
+    <ol>
+        <li>
+            <a class="btn-db" th:href="@{/inicio}" title="Ir al dashboard" aria-label="Ir al dashboard">
+                <img th:src="@{/img/dashboard.png}" alt="Dashboard" width="24" height="24">
+            </a>
+        </li>
+        <li>
+            <a class="btn-cs" th:href="@{/login}" id="logoutBtn" title="Cerrar sesión" aria-label="Cerrar sesión">
+                <img th:src="@{/img/salida.png}" alt="Salir" width="24" height="24">
+            </a>
+        </li>
+    </ol>
+</header>
 
-<h2>Lista de Prendas</h2>
+<div class="dashboard-content">
+    <div class="contenedor-crud">
+        <h2 class="titulo-gestion">Administración de Hoodies</h2>
+        <div class="tabla-container">
+            <h3 class="subtitulo-gestion">Lista de Hoodies</h3>
+            <div class="filtros-container">
+                <div class="buscador-container">
+                    <input type="text" id="buscador" class="input-buscar" placeholder="Buscar por nombre...">
+                </div>
+                <div class="filtro-talla-container">
+                    <select id="filtroTalla" class="select-filtro">
+                        <option value="">Todas las tallas</option>
+                        <option value="XS">XS</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                    </select>
+                </div>
+            </div>
+            <table class="tabla-crud">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Imagen</th>
+                    <th>Nombre</th>
+                    <th>Talla</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Tipo</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody id="tablaProductos">
+                <tr th:each="prenda : ${hoodies ?: prendas}">
+                    <td th:text="${prenda.id}"></td>
+                    <td>
+                        <img th:src="${prenda.imagenUrl}" alt="Hoodie" class="img-tabla">
+                    </td>
+                    <td th:text="${prenda.nombre}"></td>
+                    <td th:text="${prenda.talla}"></td>
+                    <td th:text="${prenda.precio}"></td>
+                    <td th:text="${prenda.stock}"></td>
+                    <td th:text="${prenda.tipoPrenda.descripcion}"></td>
+                    <td class="acciones-td">
+                        <a th:href="@{/prendas/editar/{id}(id=${prenda.id})}" class="btn-accion btn-editar">✏️</a>
+                        <a th:href="@{/prendas/eliminar/{id}(id=${prenda.id})}" class="btn-accion btn-eliminar" onclick="return confirm('¿Eliminar prenda?')">🗑️</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
-<a th:href="@{/prendas/agregar}">Agregar Prenda</a>
-
-<table border="1">
-    <tr>
-        <th>Nombre</th>
-        <th>Talla</th>
-        <th>Tipo</th>
-        <th>Precio</th>
-        <th>Stock</th>
-        <th>Acciones</th>
-    </tr>
-
-    <tr th:each="p : ${prendas}">
-        <td th:text="${p.nombre}"></td>
-        <td th:text="${p.talla}"></td>
-        <td th:text="${p.tipoPrenda.nombre}"></td>
-        <td th:text="${p.precio}"></td>
-        <td th:text="${p.stock}"></td>
-        <td>
-            <a th:href="@{/prendas/detalle/{id}(id=${p.id})}">Ver</a> |
-            <a th:href="@{/prendas/editar/{id}(id=${p.id})}">Editar</a> |
-            <a th:href="@{/prendas/eliminar/{id}(id=${p.id})}"
-               onclick="return confirm('¿Eliminar prenda?')">Eliminar</a>
-        </td>
-    </tr>
-</table>
-
-<br>
-<a th:href="@{/inicio}">Volver</a>
-
+<footer class="footer">
+    <p>&copy;Todos los derechos reservados 2025</p>
+</footer>
 </body>
 </html>

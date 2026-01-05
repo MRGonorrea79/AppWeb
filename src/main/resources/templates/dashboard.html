@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Tienda de Prendas</title>
+    <link rel="stylesheet" th:href="@{/styles2.css}">
+</head>
+<body>
+<header>
+    <div class="logo">
+        <img th:src="@{/img/LogoMP.png}" alt="logoEmpresa" width="100" height="100">
+        <h1>More Power</h1>
+    </div>
+    <div>
+        <h2>Sistema de Gestion de Inventario MorePower</h2>
+    </div>
+    <div class="user-profile">
+        <div id="CS-button">
+            <a class="btn-cs" th:href="@{/templates/login.html}" id="logoutBtn" title="Cerrar sesión" aria-label="Cerrar sesión">
+                <img th:src="@{/img/salida.png}" alt="Salir" width="24" height="24">
+            </a>
+        </div>
+    </div>
+</header>
+
+<section class="dashboard-content">
+    <div class="card-dashboard">
+        <div class="titulo-gestion">Gestión de proveedores</div>
+        <div class="contenedor-proveedores">
+            <img th:src="@{/img/Logo Proveedor.png}" alt="logoProveedor">
+            <a class="btn-gestion" th:href="@{/img/proveedores}">Gestión Proveedores</a>
+        </div>
+    </div>
+
+    <div class="card-dashboard">
+        <div class="titulo-gestion">Gestión de prendas</div>
+        <div class="contenedor-tipos">
+            <div class="card-tipo">
+                <img th:src="@{/img/camiseta.png}" alt="">
+                <a class="btn-gestion" th:href="@{/camisetas}">Gestión Camisetas</a>
+            </div>
+            <div class="card-tipo">
+                <img th:src="@{/img/gorra.png}" alt="">
+                <a class="btn-gestion" th:href="@{/gorras}">Gestión Gorras</a>
+            </div>
+            <div class="card-tipo">
+                <img th:src="@{/img/pantalones.png}" alt="">
+                <a class="btn-gestion" th:href="@{/pantalones}">Gestión Pantalones</a>
+            </div>
+            <div class="card-tipo">
+                <img th:src="@{/img/hoddie.png}" alt="">
+                <a class="btn-gestion" th:href="@{/hoddies}">Gestión hoddies</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <p>&copy; Todos los derechos reservados 2025</p>
+</footer>
+</body>
+</html>
