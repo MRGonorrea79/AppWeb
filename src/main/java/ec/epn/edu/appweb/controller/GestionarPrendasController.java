@@ -19,15 +19,6 @@ public class GestionarPrendasController {
         this.tipoPrendaDAO = tipoPrendaDAO;
     }
     @GetMapping("/")
-    public String index() {
-        return "login";
-    }
-    @GetMapping("/login")
-    public String login() {
-        return "dashboard";
-    }
-
-    @GetMapping("/inicio")
     public String inicio() {
         return "dashboard";
     }
@@ -69,7 +60,7 @@ public class GestionarPrendasController {
     }
 
     @GetMapping("/prendas/eliminar/{id}")
-    public String confirmarEliminar(@PathVariable Long id, Model model) {
+    public String mostrarMensajeEliminacion(@PathVariable Long id, Model model) {
         Prenda prenda = prendaDAO.findById(id).orElse(null);
         model.addAttribute("prenda", prenda);
 
@@ -95,7 +86,7 @@ public class GestionarPrendasController {
     }
 
     @GetMapping("/confirmar")
-    public String confirmar() {
+    public String mostrarConfirmacion() {
         return "confirmar-accion";
     }
 
