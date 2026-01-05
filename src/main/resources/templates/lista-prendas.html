@@ -84,6 +84,7 @@
                     <td class="acciones-td">
                         <a th:href="@{/prendas/editar/{id}(id=${prenda.id})}" class="btn-accion btn-editar">✏️</a>
                         <a th:href="@{/prendas/eliminar/{id}(id=${prenda.id})}" class="btn-accion btn-eliminar" onclick="return confirm('¿Eliminar prenda?')">🗑️</a>
+                        <a th:href="@{/prendas/{id}(id=${prenda.id})}" class="btn-detalle">Ver Detalle</a>
                     </td>
                 </tr>
                 </tbody>

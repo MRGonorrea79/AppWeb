@@ -108,7 +108,6 @@ header ol li a{
     margin: 20px;
     border-radius: 20px;
     display: grid;
-    grid-template-rows: 2/3 1/3;
     width: 220px;
 }
 
@@ -465,6 +464,34 @@ header ol li a{
     background-color: #dc3545;
 }
 
+/* Estilos para el botón "Ver Detalle" */
+.btn-detalle{
+    background-color: #007bff;
+    color: var(--Blanco);
+    text-decoration: none;
+    padding: 8px 14px;
+    margin: 0 5px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid transparent;
+    transition: background .18s ease, transform .08s ease, box-shadow .12s;
+    font-weight: 600;
+}
+
+.btn-detalle:hover{
+    background-color: #0069d9;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0,123,255,0.18);
+    color: var(--Blanco);
+}
+
+.btn-detalle:focus{
+    outline: 3px solid rgba(0,123,255,0.2);
+    outline-offset: 2px;
+}
+
 /* Responsive */
 @media (max-width: 768px){
     .form-crud{
@@ -485,4 +512,3 @@ header ol li a{
         gap: 10px;
     }
 }
-

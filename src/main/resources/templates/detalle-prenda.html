@@ -1,1 +1,35 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/styles2.css}">
+    <title>Detalle de Prenda</title>
+</head>
+<body>
+<header>
+    <div class="logo">
+        <img th:src="@{/img/LogoMP.png}" alt="logoEmpresa" width="100" height="100">
+        <h1>Detalle de Prenda</h1>
+    </div>
+</header>
 
+<div th:if="${prenda != null}" class="detalle-prenda-container">
+    <!-- Verifica que el objeto 'prenda' tenga los atributos necesarios -->
+    <h2 th:text="${prenda.nombre}">Nombre de la Prenda</h2>
+    <p><strong>ID:</strong> <span th:text="${prenda.id}">1</span></p>
+    <p><strong>Descripción:</strong> <span th:text="${prenda.tipoPrenda != null ? prenda.tipoPrenda.descripcion : 'Sin descripción'}">Descripción de la prenda</span></p>
+    <p><strong>Precio:</strong> $<span th:text="${prenda.precio}">0.00</span></p>
+    <p><strong>Talla:</strong> <span th:text="${prenda.talla}">M</span></p>
+    <p><strong>Tipo:</strong> <span th:text="${prenda.tipoPrenda != null ? prenda.tipoPrenda.nombre : 'N/A'}">Camiseta</span></p>
+    <a th:href="@{/prendas}" class="btn-volver">Volver a la lista</a>
+</div>
+
+<div th:if="${prenda == null}" class="detalle-prenda-container">
+    <h2>Prenda no encontrada</h2>
+    <p>No se encontró la prenda solicitada. Puede que haya sido eliminada o el identificador sea incorrecto.</p>
+    <a th:href="@{/prendas}" class="btn-volver">Volver a la lista</a>
+</div>
+
+</body>
+</html>

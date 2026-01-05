@@ -3,6 +3,7 @@ package ec.epn.edu.appweb.controller;
 import ec.epn.edu.appweb.inventario.DAO.PrendaDAO;
 import ec.epn.edu.appweb.inventario.DAO.TipoPrendaDAO;
 import ec.epn.edu.appweb.inventario.modelo.Prenda;
+import ec.epn.edu.appweb.inventario.modelo.TipoPrenda;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class GestionarPrendasController {
     }
     @GetMapping("/")
     public String inicio() {
-        return "redirect:/login";
+        return "redirect:/dashboard";
     }
 
     @GetMapping("/login")
@@ -109,9 +110,12 @@ public class GestionarPrendasController {
 
     @GetMapping("/prendas/detalle/{id}")
     public String detalle(@PathVariable Long id, Model model) {
-        model.addAttribute("prenda",
-                prendaDAO.findById(id).orElse(null));
-        return "detalle-prenda";
+        return prendaDAO.findById(id)
+                .map(prenda -> {
+                    model.addAttribute("prenda", prenda);
+                    return "detalle-prenda";
+                })
+                .orElse("error");
     }
 
     @GetMapping("/confirmar")
@@ -161,7 +165,16 @@ public class GestionarPrendasController {
         return "lista-prendas";
     }
 
+    @GetMapping("/prendas/{id}")
+    public String detallePrenda(@PathVariable Long id, Model model) {
+        return prendaDAO.findById(id)
+                .map(prenda -> {
+                    model.addAttribute("prenda", prenda);
+                    return "detalle-prenda";
+                })
+                .orElse("error"); // Redirigir a una página de error si no se encuentra la prenda
+    }
+
+
 
 }
-
-
