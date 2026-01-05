@@ -4,22 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/styles2.css}">
-    <title>Gestión Hoodies</title>
+    <title th:text="'Gestión ' + ${tipoPrendaNombre ?: 'Prendas'}">Gestión Prendas</title>
 </head>
 <body>
 <header>
     <div class="logo">
         <img th:src="@{/img/LogoMP.png}" alt="logoEmpresa" width="100" height="100">
-        <h1>Gestión de Hoodies</h1>
+        <h1 th:text="'Gestión de ' + ${tipoPrendaNombre ?: 'Prendas'}">Gestión de Prendas</h1>
     </div>
     <ol>
         <li>
-            <a class="btn-db" th:href="@{/inicio}" title="Ir al dashboard" aria-label="Ir al dashboard">
+            <a class="btn-db" th:href="@{/dashboard}" title="Ir al dashboard" aria-label="Ir al dashboard">
                 <img th:src="@{/img/dashboard.png}" alt="Dashboard" width="24" height="24">
             </a>
         </li>
         <li>
-            <a class="btn-cs" th:href="@{/login}" id="logoutBtn" title="Cerrar sesión" aria-label="Cerrar sesión">
+            <a class="btn-cs" th:href="@{/logout}" title="Cerrar sesión" aria-label="Cerrar sesión">
                 <img th:src="@{/img/salida.png}" alt="Salir" width="24" height="24">
             </a>
         </li>
@@ -28,9 +28,12 @@
 
 <div class="dashboard-content">
     <div class="contenedor-crud">
-        <h2 class="titulo-gestion">Administración de Hoodies</h2>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h2 class="titulo-gestion" th:text="'Administración de ' + ${tipoPrendaNombre ?: 'Prendas'}">Administración de Prendas</h2>
+            <a th:href="@{/prendas/agregar(tipo=${tipoUrl})}" class="btn-gestion" style="padding: 10px 20px; text-decoration: none;">➕ Agregar Prenda</a>
+        </div>
         <div class="tabla-container">
-            <h3 class="subtitulo-gestion">Lista de Hoodies</h3>
+            <h3 class="subtitulo-gestion" th:text="'Lista de ' + ${tipoPrendaNombre ?: 'Prendas'}">Lista de Prendas</h3>
             <div class="filtros-container">
                 <div class="buscador-container">
                     <input type="text" id="buscador" class="input-buscar" placeholder="Buscar por nombre...">
@@ -61,10 +64,17 @@
                 </tr>
                 </thead>
                 <tbody id="tablaProductos">
-                <tr th:each="prenda : ${hoodies ?: prendas}">
+                <tr th:if="${prendas == null || prendas.isEmpty()}">
+                    <td colspan="8" style="text-align: center; padding: 40px; color: #666;">
+                        <div style="font-size: 48px; margin-bottom: 10px;">📦</div>
+                        <p style="font-size: 18px; margin: 10px 0;">No hay prendas disponibles</p>
+                        <p style="font-size: 14px; color: #999;">Haz clic en "Agregar Prenda" para comenzar</p>
+                    </td>
+                </tr>
+                <tr th:each="prenda : ${prendas}">
                     <td th:text="${prenda.id}"></td>
                     <td>
-                        <img th:src="${prenda.imagenUrl}" alt="Hoodie" class="img-tabla">
+                        <img th:src="${prenda.imagenUrl}" alt="Prenda" class="img-tabla">
                     </td>
                     <td th:text="${prenda.nombre}"></td>
                     <td th:text="${prenda.talla}"></td>

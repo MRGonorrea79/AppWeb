@@ -20,7 +20,29 @@ public class GestionarPrendasController {
     }
     @GetMapping("/")
     public String inicio() {
+        return "redirect:/login";
+    }
+
+    @GetMapping("/login")
+    public String mostrarLogin() {
+        return "login";
+    }
+
+    @PostMapping("/login")
+    public String procesarLogin(@RequestParam String usuario, @RequestParam String password) {
+        // Por ahora, cualquier usuario/password funciona
+        // Más adelante puedes agregar validación real
+        return "redirect:/dashboard";
+    }
+
+    @GetMapping("/dashboard")
+    public String mostrarDashboard() {
         return "dashboard";
+    }
+
+    @GetMapping("/logout")
+    public String cerrarSesion() {
+        return "redirect:/login";
     }
 
     @GetMapping("/prendas")
@@ -30,15 +52,22 @@ public class GestionarPrendasController {
     }
 
     @GetMapping("/prendas/agregar")
-    public String agregar(Model model) {
+    public String agregar(@RequestParam(required = false) String tipo, Model model) {
         model.addAttribute("prenda", new Prenda());
         model.addAttribute("tipos", tipoPrendaDAO.findAll());
+        model.addAttribute("tipoOrigen", tipo); // Para saber a dónde volver
         return "agregar-prenda";
     }
 
     @PostMapping("/prendas")
-    public String guardar(@ModelAttribute Prenda prenda) {
+    public String guardar(@ModelAttribute Prenda prenda, @RequestParam(required = false) String tipo) {
         prendaDAO.save(prenda);
+
+        // Redirigir a confirmación con el tipo
+        if (tipo != null && !tipo.isEmpty()) {
+            return "redirect:/confirmar?tipo=" + tipo;
+        }
+
         return "redirect:/confirmar";
     }
 
@@ -86,15 +115,49 @@ public class GestionarPrendasController {
     }
 
     @GetMapping("/confirmar")
-    public String mostrarConfirmacion() {
+    public String mostrarConfirmacion(@RequestParam(required = false) String tipo, Model model) {
+        model.addAttribute("tipoOrigen", tipo);
         return "confirmar-accion";
     }
 
 
     @GetMapping("/hoddies")
     public String listarHoodies(Model model) {
-        List<Prenda> hoodies = prendaDAO.findByTipoPrendaId(4L); // 4L es el id de Hoodies
-        model.addAttribute("hoodies", hoodies);
+        List<Prenda> hoodies = prendaDAO.findByTipoPrendaId(4L);
+        System.out.println("Hoodies encontrados: " + hoodies.size());
+        model.addAttribute("prendas", hoodies);
+        model.addAttribute("tipoPrendaNombre", "Hoodies");
+        model.addAttribute("tipoUrl", "hoddies");
+        return "lista-prendas";
+    }
+
+    @GetMapping("/camisetas")
+    public String listarCamisetas(Model model) {
+        List<Prenda> camisetas = prendaDAO.findByTipoPrendaId(1L);
+        System.out.println("Camisetas encontradas: " + camisetas.size());
+        model.addAttribute("prendas", camisetas);
+        model.addAttribute("tipoPrendaNombre", "Camisetas");
+        model.addAttribute("tipoUrl", "camisetas");
+        return "lista-prendas";
+    }
+
+    @GetMapping("/gorras")
+    public String listarGorras(Model model) {
+        List<Prenda> gorras = prendaDAO.findByTipoPrendaId(2L);
+        System.out.println("Gorras encontradas: " + gorras.size());
+        model.addAttribute("prendas", gorras);
+        model.addAttribute("tipoPrendaNombre", "Gorras");
+        model.addAttribute("tipoUrl", "gorras");
+        return "lista-prendas";
+    }
+
+    @GetMapping("/pantalones")
+    public String listarPantalones(Model model) {
+        List<Prenda> pantalones = prendaDAO.findByTipoPrendaId(3L);
+        System.out.println("Pantalones encontrados: " + pantalones.size());
+        model.addAttribute("prendas", pantalones);
+        model.addAttribute("tipoPrendaNombre", "Pantalones");
+        model.addAttribute("tipoUrl", "pantalones");
         return "lista-prendas";
     }
 

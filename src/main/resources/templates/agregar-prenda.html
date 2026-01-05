@@ -1,33 +1,123 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar Prenda</title>
     <link rel="stylesheet" th:href="@{/styles2.css}">
 </head>
 <body>
+<header>
+    <div class="logo">
+        <img th:src="@{/img/LogoMP.png}" alt="logoEmpresa" width="100" height="100">
+        <h1>Agregar Nueva Prenda</h1>
+    </div>
+    <ol>
+        <li>
+            <a class="btn-db" th:href="@{/dashboard}" title="Ir al dashboard" aria-label="Ir al dashboard">
+                <img th:src="@{/img/dashboard.png}" alt="Dashboard" width="24" height="24">
+            </a>
+        </li>
+        <li>
+            <a class="btn-cs" th:href="@{/logout}" title="Cerrar sesión" aria-label="Cerrar sesión">
+                <img th:src="@{/img/salida.png}" alt="Salir" width="24" height="24">
+            </a>
+        </li>
+    </ol>
+</header>
 
-<h2>Agregar Prenda</h2>
+<div class="dashboard-content">
+    <div class="contenedor-crud">
+        <h2 class="titulo-gestion">Formulario de Nueva Prenda</h2>
 
-<form th:action="@{/prendas}" th:object="${prenda}" method="post">
+        <form th:action="@{/prendas}" th:object="${prenda}" method="post" style="max-width: 600px; margin: 0 auto; padding: 20px;">
 
-    <label>Nombre:</label>
-    <input th:field="*{nombre}" required><br>
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: bold;">Nombre de la Prenda:</label>
+                <input th:field="*{nombre}"
+                       type="text"
+                       required
+                       style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;"
+                       placeholder="Ej: Hoodie Classic">
+            </div>
 
-    <label>Talla:</label>
-    <input th:field="*{talla}" required><br>
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: bold;">Talla:</label>
+                <select th:field="*{talla}"
+                        required
+                        style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;">
+                    <option value="">Seleccione una talla</option>
+                    <option value="XS">XS</option>
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                    <option value="XXL">XXL</option>
+                </select>
+            </div>
 
-    <label>Tipo:</label>
-    <input th:field="*{tipoPrenda.nombre}" required><br>
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: bold;">Tipo de Prenda:</label>
+                <select th:field="*{tipoPrenda.id}"
+                        required
+                        style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;">
+                    <option value="">Seleccione un tipo</option>
+                    <option th:each="tipo : ${tipos}"
+                            th:value="${tipo.id}"
+                            th:text="${tipo.descripcion}">
+                    </option>
+                </select>
+            </div>
 
-    <label>Precio:</label>
-    <input th:field="*{precio}" type="number" step="0.01" required><br>
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: bold;">URL de Imagen:</label>
+                <input th:field="*{imagenUrl}"
+                       type="url"
+                       required
+                       style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;"
+                       placeholder="https://ejemplo.com/imagen.jpg">
+            </div>
 
-    <label>Stock:</label>
-    <input th:field="*{stock}" type="number" required><br>
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: bold;">Precio ($):</label>
+                <input th:field="*{precio}"
+                       type="number"
+                       step="0.01"
+                       min="0"
+                       required
+                       style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;"
+                       placeholder="0.00">
+            </div>
 
-    <button type="submit">Guardar</button>
-    <a th:href="@{/prendas}">Cancelar</a>
-</form>
+            <div style="margin-bottom: 20px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: bold;">Stock:</label>
+                <input th:field="*{stock}"
+                       type="number"
+                       min="0"
+                       required
+                       style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;"
+                       placeholder="0">
+            </div>
 
+            <div style="display: flex; gap: 10px; justify-content: center;">
+                <button type="submit"
+                        class="btn-gestion"
+                        style="padding: 12px 30px; cursor: pointer; border: none;">
+                    💾 Guardar Prenda
+                </button>
+                <a th:href="${tipoOrigen != null ? '/' + tipoOrigen : '/prendas'}"
+                   class="btn-gestion"
+                   style="padding: 12px 30px; text-decoration: none; background-color: #6c757d;">
+                    ❌ Cancelar
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<footer class="footer">
+    <p>&copy;Todos los derechos reservados 2025</p>
+</footer>
 </body>
 </html>
+
